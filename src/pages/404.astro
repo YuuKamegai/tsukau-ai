@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/url';
+---
+<Base title="ページが見つかりません" noindex={true}>
+  <h1 class="post-title">ページが見つかりません</h1>
+  <div class="prose">
+    <p>URLが変わったか、削除された可能性があります。</p>
+    <p><a href={href('/')}>記事一覧に戻る</a></p>
+  </div>
+</Base>

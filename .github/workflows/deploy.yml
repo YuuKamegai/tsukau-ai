@@ -1,0 +1,55 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once; let a newer push finish rather than the older one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # SITE_LIVE is a repository variable. While it is unset the build points at
+      # the Pages preview host and emits noindex, so the custom domain never
+      # inherits a duplicate-content history. Set it to 1 once DNS resolves.
+      - name: Build
+        env:
+          SITE_LIVE: ${{ vars.SITE_LIVE }}
+        run: |
+          if [ "$SITE_LIVE" = "1" ]; then
+            echo "tsukau-ai.com" > public/CNAME
+          fi
+          npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,113 @@
+:root {
+  --bg: #fdfdfb;
+  --surface: #ffffff;
+  --text: #1c1b19;
+  --muted: #6b6862;
+  --line: #e6e3dc;
+  --accent: #1f6f5c;
+  --accent-soft: #eaf3f0;
+  --pr-bg: #fff8e6;
+  --pr-line: #e8d9a8;
+  --radius: 10px;
+  --measure: 46rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141414;
+    --surface: #1c1c1b;
+    --text: #e8e6e1;
+    --muted: #9c9891;
+    --line: #302f2d;
+    --accent: #6fc0a8;
+    --accent-soft: #1b2f2a;
+    --pr-bg: #2a2415;
+    --pr-line: #4d4227;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,
+    "Noto Sans JP", system-ui, -apple-system, sans-serif;
+  /* Japanese needs more leading than Latin to stay readable at this measure. */
+  line-height: 1.9;
+  font-size: 16.5px;
+  letter-spacing: 0.02em;
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-style: dotted; }
+
+img, video { max-width: 100%; height: auto; }
+
+.wrap { width: min(100% - 2.5rem, var(--measure)); margin-inline: auto; }
+
+/* ---- header / footer ---- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 1.1rem 0;
+  margin-bottom: 2.5rem;
+}
+.site-header .wrap { display: flex; align-items: baseline; gap: 1.2rem; flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 1.15rem; color: var(--text); text-decoration: none; letter-spacing: 0.06em; }
+.brand span { color: var(--accent); }
+.site-nav { margin-left: auto; display: flex; gap: 1.1rem; font-size: 0.86rem; }
+.site-nav a { color: var(--muted); text-decoration: none; }
+.site-nav a:hover { color: var(--accent); }
+
+.site-footer {
+  margin-top: 5rem;
+  border-top: 1px solid var(--line);
+  padding: 2rem 0 3.5rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.site-footer p { margin: 0.4rem 0; }
+
+/* ---- article ---- */
+.post-title { font-size: clamp(1.55rem, 4.4vw, 2.1rem); line-height: 1.45; margin: 0 0 0.6rem; letter-spacing: 0.01em; }
+.post-meta { color: var(--muted); font-size: 0.82rem; display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
+.badge { background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 0.1rem 0.65rem; font-size: 0.76rem; }
+
+.prose h2 {
+  font-size: 1.32rem; margin: 3rem 0 1rem; padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--accent-soft); line-height: 1.5;
+}
+.prose h3 { font-size: 1.1rem; margin: 2.2rem 0 0.7rem; line-height: 1.6; }
+.prose p { margin: 1.15rem 0; }
+.prose ul, .prose ol { padding-left: 1.4rem; }
+.prose li { margin: 0.5rem 0; }
+.prose blockquote {
+  margin: 1.6rem 0; padding: 0.2rem 1.1rem; border-left: 3px solid var(--line); color: var(--muted);
+}
+.prose code { background: var(--accent-soft); padding: 0.12em 0.4em; border-radius: 4px; font-size: 0.88em; }
+.prose pre { padding: 1rem 1.1rem; border-radius: var(--radius); overflow-x: auto; }
+.prose pre code { background: none; padding: 0; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 1.6rem 0; }
+.prose :is(th, td) { border: 1px solid var(--line); padding: 0.55rem 0.7rem; text-align: left; }
+.prose th { background: var(--accent-soft); }
+.table-scroll { overflow-x: auto; }
+
+/* ---- PR disclosure (景表法 ステマ規制) ---- */
+.pr-notice {
+  background: var(--pr-bg); border: 1px solid var(--pr-line); border-radius: var(--radius);
+  padding: 0.7rem 0.95rem; font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem;
+}
+.pr-notice strong { color: var(--text); }
+
+/* ---- post list ---- */
+.post-list { list-style: none; padding: 0; margin: 0; }
+.post-list li { padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+.post-list a { text-decoration: none; color: var(--text); font-weight: 600; line-height: 1.6; }
+.post-list a:hover { color: var(--accent); }
+.post-list .excerpt { color: var(--muted); font-size: 0.87rem; margin: 0.35rem 0 0; }
+.post-list .row { display: flex; gap: 0.7rem; align-items: center; font-size: 0.78rem; color: var(--muted); margin-bottom: 0.35rem; }
+
+.lede { color: var(--muted); font-size: 0.95rem; margin: 0 0 2.5rem; }

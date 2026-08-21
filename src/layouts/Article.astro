@@ -1,0 +1,47 @@
+---
+import Base from './Base.astro';
+import { SITE, formatDate, CATEGORY_LABEL } from '../lib/url';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { post: CollectionEntry<'posts'> }
+const { post } = Astro.props;
+const d = post.data;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.pubDate.toISOString(),
+  ...(d.updatedDate && { dateModified: d.updatedDate.toISOString() }),
+  inLanguage: 'ja',
+  mainEntityOfPage: url,
+  author: { '@type': 'Organization', name: SITE.name },
+  publisher: { '@type': 'Organization', name: SITE.name },
+};
+---
+<Base title={d.title} description={d.description} jsonLd={jsonLd}>
+  <article>
+    <h1 class="post-title">{d.title}</h1>
+    <div class="post-meta">
+      <span class="badge">{CATEGORY_LABEL[d.category]}</span>
+      <span>公開 {formatDate(d.pubDate)}</span>
+      {d.updatedDate && <span>更新 {formatDate(d.updatedDate)}</span>}
+      {d.testedOn && <span>実際に触った日 {formatDate(d.testedOn)}</span>}
+    </div>
+
+    {d.pr && (
+      <p class="pr-notice">
+        <strong>【PR】</strong>
+        この記事にはアフィリエイトリンクを含みます。リンク経由で申し込みがあると、
+        当サイトに紹介料が入ります。ただし紹介料の有無で評価は変えません。
+        良くなかった点はそのまま書いています。
+      </p>
+    )}
+
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Base>

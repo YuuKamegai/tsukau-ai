@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { href, SITE, formatDate, CATEGORY_LABEL } from '../lib/url';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Base title={SITE.name}>
+  <p class="lede">{SITE.description}</p>
+
+  {posts.length === 0 ? (
+    <p class="lede">最初の記事を準備中です。</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <div class="row">
+            <span class="badge">{CATEGORY_LABEL[post.data.category]}</span>
+            <span>{formatDate(post.data.pubDate)}</span>
+          </div>
+          <a href={href(`/posts/${post.id}`)}>{post.data.title}</a>
+          <p class="excerpt">{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

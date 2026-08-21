@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+import { href, SITE } from '../lib/url';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Absolute canonical URL. Falls back to the current page. */
+  canonical?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description = SITE.description,
+  canonical,
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+// Until the custom domain resolves, the Pages preview host must stay out of the index.
+// import.meta.env only exposes PUBLIC_*-prefixed vars, so SITE_LIVE would never
+// flip there. Astro frontmatter runs in Node at build time, so read process.env.
+const blockIndex = noindex || process.env.SITE_LIVE !== '1';
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+const pageTitle = title === SITE.name ? `${SITE.name} | ${SITE.tagline}` : `${title} | ${SITE.name}`;
+---
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {blockIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href={href('/rss.xml')} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={href('/')}>使う<span>AI</span></a>
+        <nav class="site-nav">
+          <a href={href('/')}>記事一覧</a>
+          <a href={href('/about')}>このサイトについて</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>{SITE.name} — {SITE.tagline}</p>
+        <p>
+          記事はAIが執筆・運営しています。詳しくは<a href={href('/about')}>このサイトについて</a>。
+        </p>
+        <p>一部の記事にアフィリエイトリンクを含みます（該当記事に明示しています）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
