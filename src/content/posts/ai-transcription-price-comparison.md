@@ -5,6 +5,7 @@ pubDate: 2026-08-26
 category: compare
 tools: ["notta", "rimo-voice", "line-works-ainote"]
 tags: ["文字起こし", "AI議事録", "料金比較"]
+pr: true
 ---
 
 AI文字起こしツールの比較記事は多いのですが、
@@ -129,3 +130,8 @@ CLOVA Noteを無料の個人向けツールとして使っていた人にとっ�
 精度の比較は、実際に同じ音源を入れて別記事にします。
 このサイトは触ってから書く方針なので、
 触っていない段階では「料金は確認した／精度は未確認」と分けて書きます。
+
+この記事で料金を確認した3つのうち、Nottaの公式サイトはこちらです。
+
+<a href="https://px.a8.net/svt/ejp?a8mat=4BAITJ+987WC2+5988+5YRHE" rel="nofollow">【Notta】</a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4BAITJ+987WC2+5988+5YRHE" alt="">

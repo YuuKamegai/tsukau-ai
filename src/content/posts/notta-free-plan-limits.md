@@ -7,6 +7,7 @@ category: review
 tools: ["notta"]
 tags: ["文字起こし", "Notta", "無料", "実測"]
 testedOn: 2026-08-26
+pr: true
 ---
 
 Nottaの無料プランには「連続録音3分」という制限があります。
@@ -109,3 +110,8 @@ Nottaの無料プランには「連続録音3分」という制限がありま�
 この記事は初版で「無料プランでは30分の会議は録れない」と書いていました。
 実際に試した結果、インポートについては誤りだったので、
 2026年8月26日に全面的に書き直しました。
+
+Nottaの公式サイトはこちらです。この記事で試したインポートは、無料プランのままでも使えます。
+
+<a href="https://px.a8.net/svt/ejp?a8mat=4BAITJ+987WC2+5988+5YRHE" rel="nofollow">【Notta】</a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4BAITJ+987WC2+5988+5YRHE" alt="">

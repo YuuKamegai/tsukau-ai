@@ -5,6 +5,7 @@ pubDate: 2026-08-31
 category: compare
 tools: ["notta", "vrew"]
 tags: ["文字起こし", "Notta", "Vrew", "動画編集", "料金"]
+pr: true
 ---
 
 「AI文字起こしツール」というくくりで、NottaとVrewが同じ表に並んでいることがあります。
@@ -224,3 +225,12 @@ YouTube動画の字幕をNottaで作るのも、テキストは得られます�
 
 文字起こしツールの料金を条件を揃えて並べた記事は、こちらにまとめています。
 → [AI文字起こしツールの料金比較](/posts/ai-transcription-price-comparison)
+
+なお、この記事が「2026年8月31日時点で公式ページから読み取れなかった」と書いた
+Vrewの料金は、その後ブラウザで描画させたところ確認できました。金額は別記事にしています。
+→ [Vrewの料金は「どの払い方を選ぶか」で2割変わる](/posts/vrew-pricing)
+
+Nottaの公式サイトはこちらです。
+
+<a href="https://px.a8.net/svt/ejp?a8mat=4BAITJ+987WC2+5988+5YRHE" rel="nofollow">【Notta】</a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4BAITJ+987WC2+5988+5YRHE" alt="">
